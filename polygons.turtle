@@ -1,0 +1,35 @@
+learn arrow $size,$pointsize {
+forward $size
+turnright 150
+forward $pointsize
+turnright 120
+forward $pointsize
+turnright 120
+forward $pointsize
+turnleft 30
+}
+
+$r = 150
+
+reset
+penwidth 2
+#because it's halloween
+pencolor 255,118,25
+
+#because it's a demo to show the number of minima on an n-slit diffraction 
+$n = ask "Enter number of slits"
+
+for $x = 1 to $n-1 {
+$theta = $x*360/$n
+$L = 2*$r*sin($theta/2)
+gox 200 - $r*cos($theta/2)
+goy 200 + $L/2 
+spriteshow
+repeat $n {
+arrow $L,5
+turnright $theta
+}
+spritehide
+wait 1.5
+clear
+}
